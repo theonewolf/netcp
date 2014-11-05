@@ -67,7 +67,6 @@ bool checkaddr(char* ip, char* port, struct addrinfo** results)
     hints.ai_socktype   = SOCK_STREAM;
     hints.ai_protocol   = protocol->p_proto;
     hints.ai_flags      = 0;
-    endprotoent();
 
     if ((res = getaddrinfo(ip, port, &hints, results)))
     {
