@@ -71,8 +71,6 @@ bool checkaddr(char* ip, char* port, struct addrinfo** results)
     if ((res = getaddrinfo(ip, port, &hints, results)))
     {
         fprintf(stderr, "Error: %s\n", gai_strerror(res));
-        if (*results)
-            freeaddrinfo(*results);
         return true;
     }
 
