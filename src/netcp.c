@@ -131,9 +131,7 @@ bool copyfile(int fd, int sockfd)
 
         while (readc > 0 &&
                ((wrotec = write(sockfd, &(buf[pos]), readc - pos)) > 0))
-        {
             pos += wrotec;
-        }
 
         CHECK_SYSCALL(wrotec)
     } 
