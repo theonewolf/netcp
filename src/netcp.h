@@ -4,7 +4,7 @@
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 1
 
-#define BANNER      "-- netcp v %d.%d by Wolfgang Richter " \
+#define BANNER      "-- netcp v%d.%d by Wolfgang Richter " \
     "<wolfgang.richter@gmail.com> --\n"
 #define USAGE       "%s <filename> <IP> <port>\n"
 #define INFO        "copying '%s' to %s:%s\n"
