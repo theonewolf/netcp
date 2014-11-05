@@ -128,7 +128,7 @@ bool copyfile(int fd, int sockfd)
     {
         pos = 0;
 
-        while (readc > 0 &&
+        while (readc - pos > 0 &&
                ((wrotec = write(sockfd, &(buf[pos]), readc - pos)) > 0))
             pos += wrotec;
 
