@@ -148,7 +148,7 @@ int main(int argc, char* argv[])
     struct addrinfo* results = NULL;
     int fd = 0, sockfd = 0, ret = EXIT_SUCCESS;
 
-    fprintf(stdout, BANNER);
+    fprintf(stdout, BANNER, VERSION_MAJOR, VERSION_MINOR);
 
     if (argc < 4)
     {

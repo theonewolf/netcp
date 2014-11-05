@@ -1,7 +1,11 @@
 #ifndef __NETCP_
 #define __NETCP_
 
-#define BANNER      "-- netcp by Wolfgang Richter <wolfgang.richter@gmail.com> --\n"
+#define VERSION_MAJOR 1
+#define VERSION_MINOR 0
+
+#define BANNER      "-- netcp v %d.%d by Wolfgang Richter " \
+    "<wolfgang.richter@gmail.com> --\n"
 #define USAGE       "%s <filename> <IP> <port>\n"
 #define INFO        "copying '%s' to %s:%s\n"
 
