@@ -69,10 +69,7 @@ bool checkaddr(char* ip, char* port, struct addrinfo** results)
     hints.ai_socktype   = SOCK_STREAM;
 #ifndef __ANDROID__
     hints.ai_protocol   = protocol->p_proto;
-#else
-    hints.ai_protocol   = 0;
 #endif
-    hints.ai_flags      = 0;
 
     if ((res = getaddrinfo(ip, port, &hints, results)))
     {
