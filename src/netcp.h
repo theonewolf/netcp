@@ -2,7 +2,7 @@
 #define __NETCP_
 
 #define VERSION_MAJOR 1
-#define VERSION_MINOR 0
+#define VERSION_MINOR 1
 
 #define BANNER      "-- netcp v %d.%d by Wolfgang Richter " \
     "<wolfgang.richter@gmail.com> --\n"
