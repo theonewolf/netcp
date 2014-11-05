@@ -14,4 +14,4 @@ Just run `make`.
 License
 -------
 
-Open Source under the MIT License (see [LICENSE]()).
+Open Source under the MIT License (see [LICENSE](LICENSE)).
