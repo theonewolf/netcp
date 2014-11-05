@@ -94,19 +94,12 @@ bool checksock(int* sockfd, struct addrinfo* results)
         }
 
         if (connect(*sockfd, addr->ai_addr, addr->ai_addrlen) != -1)
-        {
             break;
-        }
         else
-        {
             fprintf(stderr, "Error: %s\n", strerror(errno));
-        }
 
-        if (*sockfd && (close(*sockfd) < 0))
-        {
-                fprintf(stderr, "Error: %s\n", strerror(errno));
-                return true;
-        }
+        if (*sockfd)
+            CHECK_SYSCALL(close(*sockfd))
     }
 
     if (addr == NULL)
@@ -115,18 +108,14 @@ bool checksock(int* sockfd, struct addrinfo* results)
         return true;
     }
     else
-    {
         return false;
-    }
 }
 
 bool checkfile(int* fd, char* fname)
 {
-    if ((*fd = open(fname, O_RDONLY | O_LARGEFILE)) < 0)
-    {
-        fprintf(stderr, "Error: %s\n", strerror(errno));
-        return true;
-    }
+    *fd = open(fname, O_RDONLY | O_LARGEFILE);
+
+    CHECK_SYSCALL(*fd)
 
     return false;
 }
@@ -146,18 +135,10 @@ bool copyfile(int fd, int sockfd)
             pos += wrotec;
         }
 
-        if (wrotec < 0)
-        {
-            fprintf(stderr, "Error: %s\n", strerror(errno));
-            return true;
-        }
+        CHECK_SYSCALL(wrotec)
     } 
 
-    if (readc < 0)
-    {
-        fprintf(stderr, "Error: %s\n", strerror(errno));
-        return true;
-    }
+    CHECK_SYSCALL(readc);
 
     return false;
 }
@@ -183,29 +164,10 @@ int main(int argc, char* argv[])
 
     fprintf(stdout, INFO, fname, ip, port);
 
-    if (checkaddr(ip, port, &results))
-    {
-        ret = EXIT_FAILURE;
-        goto exit;
-    }
-
-    if (checksock(&sockfd, results))
-    {
-        ret = EXIT_FAILURE;
-        goto exit;
-    }
-
-    if (checkfile(&fd, fname))
-    {
-        ret = EXIT_FAILURE;
-        goto exit;
-    }
-
-    if (copyfile(fd, sockfd))
-    {
-        ret = EXIT_FAILURE;
-        goto exit;
-    }
+    CHECK(checkaddr(ip, port, &results))
+    CHECK(checksock(&sockfd, results))
+    CHECK(checkfile(&fd, fname))
+    CHECK(copyfile(fd, sockfd))
 
 exit:
     if (results)
